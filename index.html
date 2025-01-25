@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrean Cheruiyot's Birthday</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #d91e36;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            border-bottom: 2px solid #d91e36;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #d91e36;
+            color: #fff;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .active {
+            display: block;
+            opacity: 1;
+        }
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-buttons a, .contact-buttons button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            gap: 10px;
+        }
+        .contact-buttons a {
+            background-color: #25d366; /* WhatsApp green */
+        }
+        .contact-buttons a.instagram {
+            background-color: #e4405f; /* Instagram pink */
+        }
+        .contact-buttons button {
+            background-color: #007bff; /* SMS blue */
+        }
+        .contact-buttons a:hover, .contact-buttons button:hover {
+            opacity: 0.8;
+        }
+        img.logo {
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #d91e36;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Adrean Cheruiyot's Birthday Website</h1>
+    <p>🎉 Join me in celebrating another year of adventure, learning, and achievements! 🎉</p>
+    <h2>🎂 Countdown to My Birthday: <span id="countdown" class="countdown"></span></h2>
+</header>
+
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="section">
+    <h2>About Me</h2>
+    <p>Hi, I’m Adrean Cheruiyot! I specialize in cybersecurity, including:
+        <ul>
+            <li>Ethical hacking and penetration testing</li>
+            <li>Network security and encryption</li>
+            <li>Cloud computing and data protection</li>
+        </ul>
+        In addition to my professional pursuits, I am an avid football fan supporting Arsenal and enjoy creating innovative solutions that merge creativity with technology.</p>
+</section>
+
+<section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="slideshow-container">
+        <img class="slides active" src="./WhatsApp Image 2025-01-22 at 15.59.57 (1).jpeg" alt="Image 1">
+        <img class="slides" src="./WhatsApp Image 2025-01-22 at 15.59.55.jpeg" alt="Image 2">
+        <img class="slides" src="./WhatsApp Image 2025-01-22 at 16.00.01.jpeg" alt="Image 3">
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2>Send Me Your Birthday Wish</h2>
+    <form id="wish-form">
+        <textarea id="wish" rows="4" placeholder="Write your wish here..."></textarea>
+        <button type="submit">Send Wish</button>
+    </form>
+    <p id="wish-status" style="color: green; margin-top: 10px;"></p>
+</section>
+
+<section class="section">
+    <h2>Connect with Me</h2>
+    <div class="contact-buttons">
+        <a href="https://wa.me/254727228097" target="_blank" style="background-color: #25d366;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="logo">
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/cheruiyot.adrean" target="_blank" class="instagram" style="background-color: #e4405f;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="logo">
+            Instagram
+        </a>
+        <button onclick="location.href='sms:+254727228097'" style="background-color: #007bff;">
+            <img src="data:image/png;base64,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" alt="SMS Logo" class="logo">
+            Send SMS
+        </button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Adrean Cheruiyot +254727228097</p>
+</footer>
+
+<script>
+    // Countdown Timer
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateCountdown() {
+            const birthday = new Date("January 27, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = birthday - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "🎉 It's My Birthday Today! 🎉";
+                clearInterval(interval); // Stop updating after the birthday
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        // Slideshow Functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slides");
+
+        function showSlides() {
+            slides.forEach((slide) => {
+                slide.style.display = "none"; // Hide all slides
+            });
+            slides[slideIndex].style.display = "block"; // Show current slide
+            slideIndex = (slideIndex + 1) % slides.length; // Loop back to first slide
+        }
+
+        showSlides();
+        setInterval(showSlides, 5000); // Change slide every 3 seconds
+
+        // Submit Wish
+        const form = document.getElementById('wish-form');
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const wish = document.getElementById('wish').value;
+            const status = document.getElementById('wish-status');
+            status.textContent = "Sending your wish...";
+
+            try {
+                const response = await fetch('http://localhost:3000/send-wish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wish })
+                });
+
+                if (response.ok) {
+                    status.textContent = "Wish sent successfully!";
+                } else {
+                    status.textContent = "Failed to send wish.";
+                }
+            } catch (error) {
+                status.textContent = "Error: Could not connect to the server.";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
