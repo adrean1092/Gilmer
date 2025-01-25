@@ -1,66 +1,68 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
-const { Twilio } = require('twilio'); // Correct way to import Twilio
-
-// Load environment variables
-require('dotenv').config();
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Parse incoming JSON requests
-app.use(bodyParser.json());
+// Twilio configuration
+const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = process.env;
+const client = require("twilio")(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-// Initialize SQLite database
-const db = new sqlite3.Database('./wishes.db', (err) => {
-  if (err) {
-    console.error('Failed to connect to the database:', err.message);
-  } else {
-    console.log('Connected to SQLite database.');
-    db.run(`
-      CREATE TABLE IF NOT EXISTS wishes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        message TEXT
-      )
-    `);
-  }
+// Middleware
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public"))); // Serve static files
+
+// Database setup
+const db = new sqlite3.Database("wishes.db", (err) => {
+  if (err) console.error("Error connecting to database:", err);
+  else console.log("Connected to SQLite database.");
 });
 
-// Initialize Twilio client
-const client = new Twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+// Create wishes table if not exists
+db.run(
+  `CREATE TABLE IF NOT EXISTS wishes (id INTEGER PRIMARY KEY, wish TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`
+);
 
-// Endpoint to receive and save wishes
-app.post('/send-wish', (req, res) => {
+// Route to serve the homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html")); // Ensure your `index.html` is in the `public` folder
+});
+
+// Route to handle sending wishes
+app.post("/send-wish", (req, res) => {
   const { wish } = req.body;
+  if (!wish) return res.status(400).send({ error: "Wish cannot be empty." });
 
-  if (!wish) {
-    return res.status(400).json({ error: 'Wish message is required.' });
-  }
+  console.log("Incoming wish:", wish);
 
-  // Save wish to the database
-  db.run('INSERT INTO wishes (message) VALUES (?)', [wish], function (err) {
+  // Save wish to database
+  db.run("INSERT INTO wishes (wish) VALUES (?)", [wish], function (err) {
     if (err) {
-      console.error('Failed to save wish:', err.message);
-      return res.status(500).json({ error: 'Failed to save the wish.' });
+      console.error("Error saving wish:", err);
+      return res.status(500).send({ error: "Failed to save wish." });
     }
 
-    console.log('Wish saved in the database.');
+    console.log("Wish saved in the database.");
 
-    // Send a WhatsApp notification via Twilio
+    // Send Twilio message
     client.messages
       .create({
-        body: `New Birthday Wish: ${wish}`,
-        from: 'whatsapp:+14155238886', // Twilio WhatsApp sandbox number
-        to: 'whatsapp:+254727228097' // Replace with your WhatsApp number
+        from: "whatsapp:+14155238886", // Twilio Sandbox number
+        to: "whatsapp:+254727228097", // Your WhatsApp number
+        body: `🎉 New Birthday Wish: "${wish}"`,
       })
       .then((message) => {
-        console.log('WhatsApp notification sent:', message.sid);
-        res.json({ message: 'Wish sent and saved successfully!' });
+        console.log("WhatsApp message sent:", message.sid);
+        res.send({ message: "Wish sent and saved successfully!" });
       })
       .catch((error) => {
-        console.error('Failed to send WhatsApp notification:', error.message);
-        res.status(500).json({ error: 'Failed to send WhatsApp notification.' });
+        console.error("Failed to send WhatsApp notification:", error.message);
+        res.status(500).send({
+          error: "Wish saved, but failed to send WhatsApp notification.",
+        });
       });
   });
 });
