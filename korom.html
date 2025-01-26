@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrean Cheruiyot's Birthday</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #d91e36;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            border-bottom: 2px solid #d91e36;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #d91e36;
+            color: #fff;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .active {
+            display: block;
+            opacity: 1;
+        }
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-buttons a, .contact-buttons button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            gap: 10px;
+        }
+        .contact-buttons a {
+            background-color: #25d366; /* WhatsApp green */
+        }
+        .contact-buttons a.instagram {
+            background-color: #e4405f; /* Instagram pink */
+        }
+        .contact-buttons button {
+            background-color: #007bff; /* SMS blue */
+        }
+        .contact-buttons a:hover, .contact-buttons button:hover {
+            opacity: 0.8;
+        }
+        img.logo {
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #d91e36;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Adrean Cheruiyot's Birthday Website</h1>
+    <p>🎉 Join me in celebrating another year of adventure, learning, and achievements! 🎉</p>
+    <h2>🎂 Countdown to My Birthday: <span id="countdown" class="countdown"></span></h2>
+</header>
+
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#wish">Leave a Wish</a>
+</nav>
+
+<section id="about" class="section">
+    <h2>About Me</h2>
+    <p>Hi, I’m Adrean Cheruiyot! I specialize in cybersecurity, including:
+        <ul>
+            <li>Ethical hacking and penetration testing</li>
+            <li>Network security and encryption</li>
+            <li>Cloud computing and data protection</li>
+        </ul>
+        In addition to my professional pursuits, I am an avid football fan supporting Arsenal and enjoy creating innovative solutions that merge creativity with technology.</p>
+</section>
+
+<section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="slideshow-container">
+        <img class="slides active" src="./WhatsApp Image 2025-01-22 at 15.59.57 (1).jpeg" alt="Image 1">
+        <img class="slides" src="./WhatsApp Image 2025-01-22 at 15.59.55.jpeg" alt="Image 2">
+        <img class="slides" src="./WhatsApp Image 2025-01-22 at 16.00.01.jpeg" alt="Image 3">
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Let’s connect! Reach out to me through any of these platforms:</p>
+    <div class="contact-buttons">
+        <a href="https://wa.me/254727228097" target="_blank" style="background-color: #25d366;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="logo">
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/cheruiyot.adrean" target="_blank" class="instagram" style="background-color: #e4405f;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="logo">
+            Instagram
+        </a>
+        <button onclick="location.href='sms:+254727228097'" style="background-color: #007bff;">
+            <img src="data:image/png;base64,iVBORw..." alt="SMS Logo" class="logo">
+            Send SMS
+        </button>
+    </div>
+</section>
+
+<section id="wish" class="section">
+    <h2>Leave a Wish</h2>
+    <form id="wishForm">
+        <textarea id="userWish" rows="4" placeholder="Write your wish here..." required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+        <button type="submit" style="margin-top: 10px; padding: 10px 20px; background-color: #d91e36; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Send Wish
+        </button>
+    </form>
+    <p id="wishStatus" style="color: green; margin-top: 10px; display: none;">Wish sent successfully!</p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Adrean Cheruiyot +254727228097</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateCountdown() {
+            const birthday = new Date("January 27, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = birthday - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerHTML = "🎉 It's My Birthday Today! 🎉";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        const wishForm = document.getElementById("wishForm");
+        const wishStatus = document.getElementById("wishStatus");
+
+        wishForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const userWish = document.getElementById("userWish").value;
+            if (!userWish.trim()) return alert("Please enter your wish!");
+
+            try {
+                const response = await fetch("http://localhost:3000/send-wish", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ wish: userWish })
+                });
+
+                if (response.ok) {
+                    wishStatus.style.display = "block";
+                    wishForm.reset();
+                    setTimeout(() => (wishStatus.style.display = "none"), 3000);
+                } else {
+                    alert("Failed to send wish. Try again later!");
+                }
+            } catch (error) {
+                console.error("Error sending wish:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    });
+</script>
+</body>
+</html>
