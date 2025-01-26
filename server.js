@@ -1,81 +1,61 @@
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
-const bodyParser = require('body-parser');
-const { Client } = require('twilio');
+const express = require("express");
+const bodyParser = require("body-parser");
+const path = require("path");
+const twilio = require("twilio");
+require("dotenv").config();
 
-// Load environment variables
-require('dotenv').config();
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const TWILIO_PHONE_NUMBER = "whatsapp:+14155238886";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware to parse JSON
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Twilio setup
-const twilioClient = new Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+// Serve all static files from the root directory
+app.use(express.static(__dirname));
 
-// SQLite setup
-const db = new sqlite3.Database('./wishes.db', (err) => {
-    if (err) {
-        console.error('Failed to connect to SQLite database:', err.message);
-    } else {
-        console.log('Connected to SQLite database.');
-    }
+// Serve the index.html file
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Create table if it doesn't exist
-db.run(`CREATE TABLE IF NOT EXISTS wishes (id INTEGER PRIMARY KEY AUTOINCREMENT, wish TEXT)`);
+// Handle POST requests to /send-wish
+app.post("/send-wish", async (req, res) => {
+  const { wish } = req.body;
 
-// Routes
-app.get('/wishes', (req, res) => {
-    db.all('SELECT * FROM wishes', [], (err, rows) => {
-        if (err) {
-            console.error('Error fetching wishes:', err.message);
-            return res.status(500).send('Failed to fetch wishes.');
-        }
-        res.json(rows);
+  if (!wish || typeof wish !== "string") {
+    return res.status(400).json({ message: "Wish is required and must be a string." });
+  }
+
+  console.log(`Received wish: ${wish}`);
+
+  const message = `
+🎉 Birthday Wish Received! 🎉
+"${wish}"
+
+From: Adrean Cheruiyot's Website
+  `;
+
+  try {
+    const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+    const twilioResponse = await twilioClient.messages.create({
+      body: message,
+      from: TWILIO_PHONE_NUMBER,
+      to: "whatsapp:+254727228097",
     });
-});
 
-app.post('/send-wish', async (req, res) => {
-    const { wish } = req.body;
-    if (!wish) {
-        return res.status(400).send('Wish cannot be empty.');
-    }
-
-    // Save the wish to the database
-    db.run('INSERT INTO wishes (wish) VALUES (?)', [wish], async function (err) {
-        if (err) {
-            console.error('Error saving wish:', err.message);
-            return res.status(500).send('Failed to save the wish.');
-        }
-
-        console.log('Incoming wish:', wish);
-
-        // Send a WhatsApp notification via Twilio
-        try {
-            await twilioClient.messages.create({
-                from: 'whatsapp:+14155238886', // Twilio WhatsApp sandbox number
-                to: 'whatsapp:+254727228097', // Your verified WhatsApp number
-                body: `New Birthday Wish: ${wish}`,
-            });
-            console.log('WhatsApp notification sent successfully.');
-            res.status(200).send('Wish received and notification sent.');
-        } catch (error) {
-            console.error('Failed to send WhatsApp notification:', error.message);
-            res.status(500).send('Wish received but failed to send notification.');
-        }
-    });
-});
-
-// Fallback for undefined routes
-app.use((req, res) => {
-    res.status(404).send('Not Found');
+    console.log("Message sent successfully:", twilioResponse.sid);
+    res.json({ message: "Wish sent successfully!" });
+  } catch (error) {
+    console.error("Error sending WhatsApp message:", error.message);
+    res.status(500).json({ message: "Failed to send wish. Please try again later." });
+  }
 });
 
 // Start the server
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
