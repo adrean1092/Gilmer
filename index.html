@@ -51,9 +51,6 @@
             display: none;
             width: 100%;
         }
-        .slides.active {
-            display: block;
-        }
         .video-gallery {
             display: flex;
             gap: 20px;
@@ -149,15 +146,15 @@
     <h2>Videos</h2>
     <div class="video-gallery">
         <video controls width="300">
-            <source src="vid 1.mp4" type="video/mp4">
+            <source src="vid1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <video controls width="300">
-            <source src="vid 2.mp4" type="video/mp4">
+            <source src="vid2.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <video controls width="300">
-            <source src="vid 3.mp4" type="video/mp4">
+            <source src="vid3.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -243,6 +240,20 @@
 
         updateCountdown();
         const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Slideshow Logic
+        const slides = document.querySelectorAll(".slides");
+        let slideIndex = 0;
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                slide.style.display = index === slideIndex ? "block" : "none";
+            });
+            slideIndex = (slideIndex + 1) % slides.length;
+        }
+
+        showSlides();
+        setInterval(showSlides, 3000);
     });
 </script>
 
