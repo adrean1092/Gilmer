@@ -191,7 +191,9 @@
 
             status.textContent = "Sending your wish...";
             try {
-                const response = await fetch("https://adrean-25.onrender.com", {
+                const response = await fetch("https://adrean-25.onrender.com/send-wish", {
+cd C:\Users\ule msee\Downloads\adrean\birthday-app
+
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ wish }),
