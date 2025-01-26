@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrean Cheruiyot's Birthday</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #d91e36;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            border-bottom: 2px solid #d91e36;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #d91e36;
+            color: #fff;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+        }
+        .slides.active {
+            display: block;
+        }
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-buttons a, .contact-buttons button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+        }
+        .contact-buttons a {
+            background-color: #25d366; /* WhatsApp green */
+        }
+        .contact-buttons a.instagram {
+            background-color: #e4405f; /* Instagram pink */
+        }
+        .contact-buttons button {
+            background-color: #007bff; /* SMS blue */
+        }
+        img.logo {
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #d91e36;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Adrean Cheruiyot's Birthday Website</h1>
+    <p>🎉 Join me in celebrating another year of adventure, learning, and achievements! 🎉</p>
+</header>
+
+<nav>
+    <a href="#about">About Me</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="section">
+    <h2>About Me</h2>
+    <p>Hi, I’m Adrean Cheruiyot! I specialize in cybersecurity, including:</p>
+    <ul>
+        <li>Ethical hacking and penetration testing</li>
+        <li>Network security and encryption</li>
+        <li>Cloud computing and data protection</li>
+    </ul>
+</section>
+<section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="slideshow-container">
+        <img class="slides active" src="pic1.jpeg" alt="Image 1">
+        <img class="slides" src="pic2.jpeg" alt="Image 2">
+        <img class="slides" src="pic3.jpeg" alt="Image 3">
+        <img class="slides" src="pic4.jpeg" alt="Image 4">
+        <img class="slides" src="pic5.jpeg" alt="Image 5">
+        <img class="slides" src="pic6.jpeg" alt="Image 6">
+        <img class="slides" src="pic7.jpeg" alt="Image 7">
+        <img class="slides" src="pic8.jpeg" alt="Image 8">
+    </div>
+</section>
+
+</section>
+
+    <div class="video-gallery">
+        <video controls width="300">
+            <source src="vid 1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls width="300">
+            <source src="vid 2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls width="300">
+            <source src="vid 3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2>Send Me Your Birthday Wish</h2>
+    <form id="wish-form">
+        <textarea id="wish" rows="4" placeholder="Write your wish here..."></textarea>
+        <button type="submit">Send Wish</button>
+    </form>
+    <p id="wish-status" style="color: green; margin-top: 10px;"></p>
+</section>
+
+<section class="section">
+    <h2>Connect with Me</h2>
+    <div class="contact-buttons">
+        <a href="https://wa.me/254727228097" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="logo">
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/cheruiyot.adrean" target="_blank" class="instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="logo">
+            Instagram
+        </a>
+        <button onclick="location.href='sms:+254727228097'">
+            <img src="data:image/jpeg;base64,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" class="logo">
+            Send SMS
+        </button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Adrean Cheruiyot</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("wish-form");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const wish = document.getElementById("wish").value;
+            const status = document.getElementById("wish-status");
+
+            status.textContent = "Sending your wish...";
+            try {
+                const response = await fetch("http://localhost:3000/send-wish", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ wish }),
+                });
+                if (response.ok) {
+                    status.textContent = "Wish sent successfully!";
+                } else {
+                    status.textContent = "Failed to send wish.";
+                }
+            } catch (err) {
+                status.textContent = "Error connecting to the server.";
+            }
+        });
+
+        const slides = document.querySelectorAll(".slides");
+        let slideIndex = 0;
+        setInterval(() => {
+            slides.forEach((slide, index) => {
+                slide.style.display = index === slideIndex ? "block" : "none";
+            });
+            slideIndex = (slideIndex + 1) % slides.length;
+        }, 3000);
+    });
+</script>
+
+</body>
+</html>
