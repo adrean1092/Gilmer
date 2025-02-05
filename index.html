@@ -137,6 +137,23 @@
         <img class="gallery-item" src="pic9.jpeg" alt="Image 9">
     </div>
 </section>
+
+<style>
+    .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+        gap: 10px; /* Space between images */
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .gallery-item {
+        width: 100%;
+        height: auto;
+        border-radius: 5px; /* Optional: Adds rounded corners */
+    }
+</style>
+
 <section id="contact" class="section">
     <h2>Send Me Your Birthday Wish</h2>
     <form id="wish-form">
